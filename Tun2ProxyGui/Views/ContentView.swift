@@ -7,8 +7,6 @@ struct ContentView: View {
     private var statusIcon: String { vm.isRunning ? "checkmark.circle.fill" : "xmark.circle.fill" }
     private var statusColor: Color { vm.isRunning ? .green : .red }
 
-    @State private var selectedTab = 0
-
     var body: some View {
         ZStack {
             VisualEffectView()
@@ -37,18 +35,24 @@ struct ContentView: View {
                 .padding(.top, 24)
                 .padding(.bottom, 12)
 
-                TabView(selection: $selectedTab) {
+                TabView(selection: $vm.selectedTabIndex) {
                     StatusTabView()
                         .tabItem {
                             Label("Status", systemImage: "bolt.fill")
                         }
                         .tag(0)
 
+                    AppsTabView()
+                        .tabItem {
+                            Label("Apps", systemImage: "app.badge.fill")
+                        }
+                        .tag(1)
+
                     LogsTabView()
                         .tabItem {
                             Label("Logs", systemImage: "terminal.fill")
                         }
-                        .tag(1)
+                        .tag(2)
                 }
                 .tabViewStyle(.automatic)
             }

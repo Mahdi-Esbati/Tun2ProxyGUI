@@ -15,10 +15,15 @@ final class Tun2ProxyViewModel: ObservableObject {
     @Published var logEntries: [LogEntry] = []
     @Published var isRunning: Bool = false
     @Published var isAuthorized: Bool = false
+    
+    @Published var appListeners: [AppListener] = []
+    @Published var isScanning: Bool = false
+    @Published var selectedTabIndex: Int = 0
 
     private var cancellables = Set<AnyCancellable>()
     private let binaryService = BinaryService.shared
     private let proxyService = ProxyService.shared
+    private let appListenerService = AppListenerService.shared
 
     init() {
         if let bundled = binaryService.bundledTun2ProxyPath() {
@@ -153,6 +158,23 @@ final class Tun2ProxyViewModel: ObservableObject {
         proxyService.stopSync(binaryPath: binaryPath, isRunning: isRunning, onStateChange: { [weak self] isRunning in
             self?.isRunning = isRunning
         })
+    }
+
+    func fetchAppListeners() {
+        isScanning = true
+        Task {
+            let listeners = await appListenerService.fetchAppListeners()
+            await MainActor.run {
+                self.appListeners = listeners
+                self.isScanning = false
+            }
+        }
+    }
+
+    func selectAppListener(_ listener: AppListener) {
+        self.proxyHost = "localhost"
+        self.proxyPort = listener.port
+        self.selectedTabIndex = 0 // Switch back to Status tab
     }
 
     var fullLogs: String {
