@@ -2,7 +2,9 @@
 
 A modern macOS graphical user interface for [tun2proxy](https://github.com/tun2proxy/tun2proxy), allowing you to easily route your system traffic through a SOCKS5 or HTTP proxy using a TUN interface.
 
-![Tun2ProxyGUI Screenshot](https://raw.githubusercontent.com/tun2proxy/tun2proxy-gui/main/screenshot.png) _(Note: Placeholder for actual screenshot)_
+<img width="481" height="680" alt="image" src="https://github.com/user-attachments/assets/ff98cdfa-60da-40e6-ae11-3b448f957522" />
+<img width="481" height="681" alt="image" src="https://github.com/user-attachments/assets/389e2dd8-a509-461a-8516-6bc6ba5e34bb" />
+
 
 ## Features
 
@@ -48,6 +50,11 @@ A modern macOS graphical user interface for [tun2proxy](https://github.com/tun2p
 - `Tun2ProxyGui/Services`: Core logic for process management, binary authorization, and application scanning.
 - `Tun2ProxyGui/ViewModels`: State management for the UI.
 - `Tun2ProxyGui/Views`: SwiftUI components and tab-based navigation.
+
+
+## Other screenshots
+
+<img width="481" height="681" alt="image" src="https://github.com/user-attachments/assets/ff560afa-5ca1-4733-9f8a-530707764b4a" />
 
 ## Contributing
 
